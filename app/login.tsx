@@ -1,10 +1,9 @@
 import { Text, View } from "react-native";
 
-export default function Home() {
+export default function Login() {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ fontSize: 24 }}>Home</Text>
-      <Text>Feed and matches will go here</Text>
+      <Text style={{ fontSize: 22 }}>Login</Text>
     </View>
   );
 }

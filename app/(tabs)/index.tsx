@@ -10,9 +10,17 @@ export default function Login() {
   };
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center", gap: 16 }}>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text style={{ fontSize: 22 }}>Login</Text>
-      <Pressable onPress={handleFakeLogin} style={{ padding: 12, borderRadius: 8, backgroundColor: "#1d63ea" }}>
+      <Pressable
+        onPress={handleFakeLogin}
+        style={{
+          padding: 12,
+          borderRadius: 8,
+          backgroundColor: "#1d63ea",
+          marginTop: 10,
+        }}
+      >
         <Text style={{ color: "white", fontSize: 16 }}>Continue</Text>
       </Pressable>
     </View>
