@@ -4,14 +4,12 @@ import { Pressable, Text, View } from "react-native";
 import { useProfile } from "../../hooks/useProfile";
 import { loadProfile, type Profile } from "../../lib/profileStorage";
 
-const profile = useProfile();
-
 export default function ProfileScreen() {
+  const profileApi = useProfile(); // now inside the component
   const [profile, setProfile] = useState<Profile | null>(null);
 
   useEffect(() => {
     const sub = setInterval(() => {
-      // simple refresh loop while you iterate; replace with focus listener later
       loadProfile().then(setProfile);
     }, 300);
     return () => clearInterval(sub);
