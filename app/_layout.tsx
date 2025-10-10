@@ -2,15 +2,17 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
+import "react-native-get-random-values";
+import "react-native-url-polyfill/auto";
 import { loadProfile } from "../lib/profileStorage";
 
 export default function RootLayout() {
-  const [status, setStatus] = useState<"loading" | "guest" | "needsProfile" | "ready">("loading");
+  const [status, setStatus] = useState<"loading"|"guest"|"needsProfile"|"ready">("loading");
 
   useEffect(() => {
     const bootstrap = async () => {
-      const isLogged = (await AsyncStorage.getItem("loggedIn")) === "true";
-      if (!isLogged) return setStatus("guest");
+      const loggedIn = (await AsyncStorage.getItem("loggedIn")) === "true";
+      if (!loggedIn) return setStatus("guest");
 
       const p = await loadProfile();
       setStatus(p ? "ready" : "needsProfile");
@@ -20,7 +22,7 @@ export default function RootLayout() {
 
   if (status === "loading") {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={{ flex:1, alignItems:"center", justifyContent:"center" }}>
         <ActivityIndicator size="large" color="#1d63ea" />
       </View>
     );
@@ -28,7 +30,7 @@ export default function RootLayout() {
 
   if (status === "guest") {
     return (
-      <Stack screenOptions={{ headerShown: false }}>
+      <Stack screenOptions={{ headerShown:false }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="login" />
       </Stack>
@@ -37,14 +39,14 @@ export default function RootLayout() {
 
   if (status === "needsProfile") {
     return (
-      <Stack screenOptions={{ headerShown: false }}>
+      <Stack screenOptions={{ headerShown:false }}>
         <Stack.Screen name="create-profile" />
       </Stack>
     );
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
+    <Stack screenOptions={{ headerShown:false }}>
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="create-profile" />
     </Stack>
