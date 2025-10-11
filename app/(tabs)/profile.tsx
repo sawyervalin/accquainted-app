@@ -36,8 +36,8 @@ export default function ProfileScreen() {
       {!!profile.year && <Text style={{ fontSize: 16, color: "#555" }}>Year: {profile.year}</Text>}
 
       <Link href="/create-profile" asChild>
-        <Pressable style={{ backgroundColor: "#1d63ea", padding: 12, borderRadius: 8, marginTop: 16 }}>
-          <Text style={{ color: "white", textAlign: "center" }}>Edit Profile</Text>
+        <Pressable style={{ padding: 12, borderRadius: 8, marginTop: 16 }}>
+          <Text style={{ color: "red", textAlign: "center" }}>Edit Profile</Text>
         </Pressable>
       </Link>
     </View>

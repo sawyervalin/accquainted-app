@@ -11,7 +11,7 @@ module.exports = function (api) {
           alias: { "@": "./" },
           extensions: [".tsx", ".ts", ".js", ".jsx", ".json"]
         }
-      ]
+      ],
     ]
   };
 };
