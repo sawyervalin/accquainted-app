@@ -176,6 +176,7 @@
 // ProfileBasicsScreen.tsx
 
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -191,6 +192,8 @@ import {
 type Option = { id: string; label: string; icon?: string; gradient?: boolean };
 
 export default function ProfileBasicsScreen() {
+  const router = useRouter();
+  
   const [interestSel, setInterestSel] = useState<string[]>(["art", "gaming", "music", "travel", "movies", "foodie", "fitness"]);
   const [school, setSchool] = useState("Engineering");
   const [religion, setReligion] = useState("Spiritual");
@@ -236,9 +239,19 @@ export default function ProfileBasicsScreen() {
   const toggle = (setFn: React.Dispatch<React.SetStateAction<string[]>>, value: string) =>
     setFn((prev) => (prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]));
 
+  
+
+
+  // Add handleContinue function
+  const handleContinue = () => {
+    // You can add navigation or save logic here
+    router.push("/(tabs)/profile");
+  };
+
   return (
     <SafeAreaView style={s.safe}>
       <ScrollView contentContainerStyle={s.container}>
+        
 
         <Text style={s.title}>Tell Us About You</Text>
         <Text style={s.subtitle}>
@@ -331,7 +344,7 @@ export default function ProfileBasicsScreen() {
         </Section>
 
         {/* CTA */}
-        <TouchableOpacity activeOpacity={0.9} style={s.ctaWrap}>
+        <TouchableOpacity activeOpacity={0.9} style={s.ctaWrap} onPress={handleContinue}>
           <LinearGradient
             colors={["#FF46B5", "#7B3EF3"]}
             start={{ x: 0, y: 0 }}
